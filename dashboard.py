@@ -213,11 +213,11 @@ def boxplot_graph(id_client, feat, df_vois):
 
 
 # Titre de la page
-st.set_page_config(page_title="Dashboard Prêt à dépenser", layout="wide")
+st.set_page_config(page_title="Dashboard Credit Time", layout="wide")
 
 # Sidebar
 with st.sidebar:
-    logo = Image.open('img/logo pret à dépenser.png')
+    logo = Image.open('img/credit time.png')
     st.image(logo, width=200)
     # Page selection
     page = st.selectbox('Navigation', ["Home", "Information du client", "Interprétation locale",
@@ -232,11 +232,11 @@ with st.sidebar:
     st.write('Vous avez choisi le client ID : '+str(id_client_dash))
 
     st.markdown("""---""")
-    st.write("Created by Océane Youyoutte")
+    st.write("Cree pour la formation implementation model scoring")
 
 
 if page == "Home":
-    st.title("Dashboard Prêt à dépenser - Home Page")
+    st.title("Dashboard Credit Time - Home Page")
     st.markdown("Ce site contient un dashboard interactif permettant d'expliquer aux clients les raisons\n"
                 "d'approbation ou refus de leur demande de crédit.\n"
                 
@@ -256,7 +256,7 @@ if page == "Home":
 
 
 if page == "Information du client":
-    st.title("Dashboard Prêt à dépenser - Page Information du client")
+    st.title("Dashboard Credit Time - Page Information du client")
 
     st.write("Cliquez sur le bouton ci-dessous pour commencer l'analyse de la demande :")
     button_start = st.button("Statut de la demande")
@@ -281,7 +281,7 @@ if page == "Information du client":
 
 
 if page == "Interprétation locale":
-    st.title("Dashboard Prêt à dépenser - Page Interprétation locale")
+    st.title("Dashboard Credit Time - Page Interprétation locale")
 
     locale = st.checkbox("Interprétation locale")
     if locale:
@@ -299,7 +299,7 @@ if page == "Interprétation locale":
 
 
 if page == "Interprétation globale":
-    st.title("Dashboard Prêt à dépenser - Page Interprétation globale")
+    st.title("Dashboard Credit Time - Page Interprétation globale")
     # Création du dataframe de voisins similaires
     data_voisins = df_voisins(id_client_dash)
 
