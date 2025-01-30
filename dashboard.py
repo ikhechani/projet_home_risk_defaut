@@ -13,7 +13,7 @@ import seaborn as sns
 
 
 # local
- API_URL = "http://127.0.0.1:8000/"
+ API_URL = "https://projet-home-risk-defaut.onrender.com/"
 
 # Chargement des dataset
 data_train = pd.read_csv('train_df_sample.csv')
