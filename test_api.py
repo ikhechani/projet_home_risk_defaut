@@ -1,36 +1,35 @@
-from fastapi import status
-import requests
-import pytest
-import json
+import unittest
+from fastapi.testclient import TestClient
+from api import app  # Assurez-vous que le fichier de l'API s'appelle bien `api.py`
 
-API_URL = "https://projet-home-risk-defaut.onrender.com/"
+class TestAPI(unittest.TestCase):
+    def setUp(self):
+        # Créer un client de test pour l'API
+        self.client = TestClient(app)
 
-def test_welcome():
-    """Test la fonction welcome() de l'API."""
-    response = requests.get(API_URL)
-    assert response.status_code == status.HTTP_200_OK
-    assert json.loads(response.content) == 'Bienvenue'
+    def test_welcome_message(self):
+        # Tester l'endpoint racine
+        response = self.client.get("/")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json(), "Bienvenue")
 
+    def test_check_client_id_valid(self):
+        # Tester l'endpoint de vérification d'un client valide
+        response = self.client.get("/302160")
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(response.json())
 
-def test_check_client_id():
-    """Test la fonction check_client_id() de l'API avec un client faisant partie de la base de données."""
-    url = API_URL + str(192535)
-    response = requests.get(url)
-    assert response.status_code == status.HTTP_200_OK
-    assert json.loads(response.content) == True
+    def test_check_client_id_invalid(self):
+        # Tester l'endpoint de vérification d'un client invalide
+        response = self.client.get("/999999")
+        self.assertEqual(response.status_code, 200)
+        self.assertFalse(response.json())
 
+    def test_get_prediction(self):
+        # Tester l'endpoint de prédiction pour un client spécifique
+        response = self.client.get("/prediction/302160")
+        self.assertEqual(response.status_code, 200)
+        self.assertAlmostEqual(response.json(), 0.4647581264389726, places=6)
 
-def test_check_client_id_2():
-    """Test la fonction check_client_id() de l'API avec un client ne faisant pas partie de la base de données."""
-    url = API_URL + str(100000)
-    response = requests.get(url)
-    assert response.status_code == status.HTTP_200_OK
-    assert json.loads(response.content) == False
-
-
-def test_get_prediction():
-    """Test la fonction get_prediction() de l'API."""
-    url = API_URL + "prediction/" + str(192535)
-    response = requests.get(url)
-    assert response.status_code == status.HTTP_200_OK
-    assert json.loads(response.content) == 0.4805479971101088
+if __name__ == "__main__":
+    unittest.main()
