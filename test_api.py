@@ -2,7 +2,7 @@ from fastapi import status
 import requests
 import json
 
-API_URL = "http://127.0.0.1:8000/"
+API_URL = "https://projet-home-risk-defaut.onrender.com/"
 
 def test_welcome():
     """Test la fonction welcome() de l'API."""
