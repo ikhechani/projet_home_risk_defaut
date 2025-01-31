@@ -35,7 +35,7 @@ def welcome():
     :param: None
     :return: Message (string).
     """
-    return 'Bienvenue '
+    return 'Bienvenue'
 
 
 @app.get('/{client_id}')
