@@ -1,5 +1,6 @@
 from fastapi import status
 import requests
+import pytest
 import json
 
 API_URL = "https://projet-home-risk-defaut.onrender.com/"
@@ -8,7 +9,7 @@ def test_welcome():
     """Test la fonction welcome() de l'API."""
     response = requests.get(API_URL)
     assert response.status_code == status.HTTP_200_OK
-    assert json.loads(response.content) == 'Welcome to the API'
+    assert json.loads(response.content) == 'Bienvenue'
 
 
 def test_check_client_id():
