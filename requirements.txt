@@ -12,8 +12,6 @@ psutil==5.9.5
 scikit-learn==1.2.2
 scipy==1.10.1
 shap~=0.41.0
-fastapi~=0.98.0
-uvicorn~=0.22.0
 streamlit~=1.24.0
 requests~=2.31.0
 seaborn~=0.12.2
@@ -22,6 +20,9 @@ plotly~=5.15.0
 pydantic~=1.10.9
 pytest~=7.4.0
 unittest2==1.1.0
-h11==0.14.0
-httpcore==1.0.7
-httpx==0.28.1
+fastapi>=0.95.0
+starlette>=0.26.0
+uvicorn>=0.22.0
+anyio>=4.0.0
+httpcore>=1.0.0
+httpx>=0.23.0
